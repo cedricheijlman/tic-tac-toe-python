@@ -1,4 +1,4 @@
-from glob import glob
+import random
 
 
 board = ["-", "-", "-",
@@ -67,8 +67,9 @@ def diagonal(board):
 def checkWin():
   global gameRunning
   if horizontal(board) or vertical(board) or diagonal(board):
-    print(f"Player {current_player} has won")
     gameRunning = False
+    return print(f"The winner is: {winner}")
+   
  
 # check for tie
 def checkTie(board):
@@ -86,6 +87,20 @@ def switchPlayer():
   else:
     current_player = "X"
 
+# computer choice
+def computer(board):
+  while current_player == "O":
+    position = random.randint(0, 8)
+    if board[position] == "-":
+      board[position] = "O"
+      switchPlayer()
+
 while gameRunning:
   printBoard(board)
   playerInput(board)
+  checkWin()
+  checkTie(board)
+  switchPlayer()
+  computer(board)
+  checkWin()
+  checkTie(board)
