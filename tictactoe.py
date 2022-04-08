@@ -63,7 +63,28 @@ def diagonal(board):
   elif board[2] == board[4] == board[6] and board[2] != "-":
     winner = board[2]
     return True
+
+def checkWin():
+  global gameRunning
+  if horizontal(board) or vertical(board) or diagonal(board):
+    print(f"Player {current_player} has won")
+    gameRunning = False
  
+# check for tie
+def checkTie(board):
+  global gameRunning
+  if "-" not in board:
+    printBoard(board)
+    print("It's a tie")
+    gameRunning = False
+
+# switch player
+def switchPlayer():
+  global current_player
+  if current_player == "X":
+    current_player = "O"
+  else:
+    current_player = "X"
 
 while gameRunning:
   printBoard(board)
