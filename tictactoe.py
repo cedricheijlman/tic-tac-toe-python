@@ -1,3 +1,6 @@
+from glob import glob
+
+
 board = ["-", "-", "-",
           "-", "-", "-",              
           "-", "-", "-"]
@@ -26,6 +29,20 @@ def playerInput(board):
     else: 
       print("You need to answer a number between 1-9")
       finalInput == " "
+
+# Check if someone has won
+def horizontal(board):
+  global winner
+  if board[0] == board[1] == board[2] and board[1] != "-":
+    winner = board[0]
+    return True
+  elif board[3] == board[4] == board[5] and board[3] != "-":
+    winner = board[3]
+    return True
+  elif board[6] == board[7] == board[8] and board[6] != "-":
+    winner = board[6]
+    return True
+
 
 while gameRunning:
   printBoard(board)
